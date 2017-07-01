@@ -57,7 +57,7 @@ function patchImage() {
 
             imageData=JSON.parse(data);
             //alert("1");
-            //alert(data.uploaded_file_url);
+            alert(data);
             $('#patch_img').attr("src",imageData.image_url);
 
         }
@@ -112,16 +112,12 @@ function getImages() {
 
 }
 function getImage() {
-{#  var formData=new FormData();#}
-{#  var image_file=document.getElementById('myfile').files[0];#}
-{#  var image_url = document.getElementById('file_url').value;#}
-{#  formData.append('image_file',image_file);#}
-{#  formData.append('image_url',image_url);#}
+
 var image_name = document.getElementById('image_name').value;
     $.ajax({
         data:'',
         type:'get',
-        url: 'http://localhost:8060/imageManagement/getImages/'+image_name,
+        url: 'http://localhost:8060/imageManagement/getImage/'+image_name,
         headers :{
             'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlVWeEZ4In0.Urid3DDoteXGrQrbT43NVSxIhv09PlAMswstnN_4G8U'
 
@@ -134,7 +130,19 @@ var image_name = document.getElementById('image_name').value;
           alert(imageData.images);
           alert(imageData.image);
           alert(imageData.error);
-          $('#getimg').attr("src",imageData.image);
+          for(var i=0; i<imageData.image.length;i++)
+            {
+                var img = $('<img />', {
+                    id: 'imgid'+i,
+                    src:imageData.image[i],
+                    width:40,
+                    height:40
+                });
+
+                img.appendTo($('#get'))
+
+            }
+{#          $('#getimg').attr("src",imageData.image);#}
         }
     });
 
@@ -142,11 +150,7 @@ var image_name = document.getElementById('image_name').value;
 }
 
 function deleteImage() {
-{#  var formData=new FormData();#}
-{#  var image_file=document.getElementById('myfile').files[0];#}
-{#  var image_url = document.getElementById('file_url').value;#}
-{#  formData.append('image_file',image_file);#}
-{#  formData.append('image_url',image_url);#}
+
 var delete_image_name = document.getElementById('delete_image_name').value;
     $.ajax({
         data:'',
@@ -168,11 +172,6 @@ var delete_image_name = document.getElementById('delete_image_name').value;
 
 }
 function generateToken() {
-{#  var formData=new FormData();#}
-{#  var image_file=document.getElementById('myfile').files[0];#}
-{#  var image_url = document.getElementById('file_url').value;#}
-{#  formData.append('image_file',image_file);#}
-{#  formData.append('image_url',image_url);#}
 
     $.ajax({
         data:'',
@@ -211,7 +210,8 @@ function generateToken() {
     </br>
     <input type="text" name="image_name" id="image_name" placeholder="image Name"><br>
     <button type="submit" onclick="getImage()">GET IMAGE</button>
-    <img src="" alt="getimg" id="getimg" class="img-responsive img-rounded" height="42" width="42">
+    <div id="get"></div>
+{#    <img src="" alt="getimg" id="getimg" class="img-responsive img-rounded" height="42" width="42">#}
  <!-- <button type="submit" method="get">get</button> -->
 
 
@@ -234,32 +234,6 @@ function generateToken() {
 
     </br>
     <button type="submit" onclick="generateToken()">generate Token</button>
-    {% if uploaded_file_url %}
-  	<img src="{{ uploaded_file_url }}" alt="img" class="img-responsive img-rounded" height="42" width="42"	>
-    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
-  {% endif %}
 
-  {% if payload %}
-  	<p>{{payload}}</p>
-  {% endif %}	
-  {% if files %}
-  	{% for i in files %}
-  		
-    <img src="{{ i }}" height="42" width="42"/>
-    <p>File  <a href="{{ i }}">{{ i }}</a></p>
-    
-    <br> 
-    	
-
-	{% endfor %}
-
-  	<!-- <img src="{{ uploaded_file_url }}" alt="img" class="img-responsive img-rounded" height="42" width="42"	>
-    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p> -->
-  {% endif %}
-
-{% if image %}
-  	<img src="{{ image }}" alt="img" class="img-responsive img-rounded" height="42" width="42"	>
-    <p>File uploaded at: <a href="{{ image }}">{{ image }}</a></p>
-  {% endif %}
   
 {% endblock %}

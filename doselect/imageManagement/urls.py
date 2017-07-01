@@ -9,9 +9,9 @@ app_name = 'imageManagement'
 urlpatterns = [
     url(r'^post/$', views.Index.as_view(), name='index'),
     url(r'^getImages/$', views.get_images, name='get_images'),
-    url(r'^getImages/(?P<image_name>[a-zA-Z0-9._-]+)/$', views.get_images, name='get_images'),
+    url(r'^getImage/(?P<image_name>[a-zA-Z0-9._-]+)/$', views.get_images, name='get_images'),
     url(r'^delete/(?P<image_name>[a-zA-Z0-9._-]+)/$', views.delete, name='delete'),
-    url(r'^patch/(?P<image_name>[a-zA-Z0-9._-]+)$', views.patch, name='patch'),
+    url(r'^patch/(?P<image_name_delete>[a-zA-Z0-9._-]+)$', views.patch, name='patch'),
     url(r'^generateToken/$', views.generate_token, name='generate_token'),
 ]
 
