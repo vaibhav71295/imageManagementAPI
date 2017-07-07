@@ -1,1 +1,1 @@
-web: gunicorn imageManagement:app
+web: gunicorn doselect.wsgi --pythonpath ../doselect --log-file -
