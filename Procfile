@@ -1,1 +1,1 @@
-web: gunicorn imageManagemenr:app
+web: gunicorn imageManagement:app
