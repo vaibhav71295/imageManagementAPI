@@ -105,6 +105,7 @@ else it throws the suitable error
 
 :param image_name:
 """
+@csrf_exempt
 def get_images(request, image_name=""):
 
     jwtToken = request.META['HTTP_AUTHORIZATION']
