@@ -1,1 +1,1 @@
-web: gunicorn doselect.wsgi --pythonpath ../doselect --log-file -
+web: gunicorn doselect.wsgi --pythonpath doselect --log-file -
