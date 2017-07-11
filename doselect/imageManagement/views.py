@@ -255,4 +255,4 @@ def generate_token(request):
 
     payload = jwt.encode(data, 'bhandari', 'HS256')
 
-    return HttpResponse(json.dumps({"payload": payload}))
+    return HttpResponse(json.dumps({"payload": payload.decode("utf-8")}))
