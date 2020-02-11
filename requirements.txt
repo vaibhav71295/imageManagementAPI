@@ -1,5 +1,5 @@
 cloudinary==1.8.0
-Django==1.9.1
+Django==1.11.28
 djangorestframework==3.3.2
 djangorestframework-jwt==1.11.0
 mock==2.0.0
